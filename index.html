@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories ♡</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Georgia,serif;
+  color:#fff0e6;
+  background:linear-gradient(145deg,#09070d,#1b0c19,#09070d);
+  overflow-x:hidden;
+}
+#lock{
+  position:fixed;inset:0;z-index:20;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;background:#100911;
+}
+.lockbox{
+  width:100%;max-width:370px;text-align:center;
+  padding:38px 25px;border:1px solid #b78b5d;
+  border-radius:20px;background:#1b101b;
+  box-shadow:0 15px 60px #0009;
+}
+.lockheart{font-size:48px;color:#e6b77d;animation:pulse 2s infinite}
+.lockbox h2{color:#f2d4a2;font-weight:normal}
+.lockbox p{color:#d8b9c6;line-height:1.8}
+#pin{
+  width:100%;padding:14px;border:1px solid #98744e;
+  border-radius:8px;background:#100b12;color:white;
+  text-align:center;letter-spacing:7px;margin:15px 0;font-size:18px;
+}
+button{
+  background:linear-gradient(100deg,#c69b65,#f1d5a3);
+  color:#20131a;border:0;border-radius:30px;
+  padding:13px 24px;font-weight:bold;cursor:pointer;
+}
+button:active{transform:scale(.97)}
+#err{color:#f3a4b0;font:13px Arial,sans-serif}
+header{text-align:center;padding:65px 18px 38px;position:relative}
+.tag{color:#e9bd82;letter-spacing:5px;font:11px Arial,sans-serif}
+h1{
+  font-size:clamp(36px,8vw,65px);font-weight:normal;
+  color:#f2d4a2;margin:20px 0;
+  text-shadow:0 0 25px #dba76b55;
+}
+header p{color:#d8b9c6;font-style:italic;line-height:1.9}
+.line{width:75px;height:1px;background:#c89b64;margin:25px auto}
+main{max-width:850px;margin:auto;padding:10px 18px 55px}
+.memory{
+  margin:35px auto 55px;padding:18px;
+  border:1px solid #694a50;border-radius:16px;
+  background:linear-gradient(145deg,#1c111c,#120d14);
+  box-shadow:0 15px 45px #0007;
+  animation:rise .8s ease both;
+}
+@keyframes rise{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.photo{
+  width:100%;height:380px;border-radius:10px;
+  background:linear-gradient(135deg,#291a29,#110c13);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.details{padding:20px 5px 8px;text-align:center}
+.memory h2{font-weight:normal;color:#f1d5a3;font-size:25px;margin:16px 0}
+.quote{
+  width:100%;min-height:105px;resize:vertical;
+  background:#160f17;border:1px solid #4b343e;
+  border-radius:8px;padding:13px;color:#f8e7e9;
+  text-align:center;line-height:1.8;
+  font:italic 16px Georgia,serif;
+}
+.music{
+  max-width:570px;margin:10px auto 65px;
+  padding:27px 20px;text-align:center;
+  border:1px solid #8e6b51;border-radius:18px;
+  background:linear-gradient(145deg,#20131f,#100b13);
+  box-shadow:0 10px 40px #0007;
+}
+.music-icon{font-size:35px;color:#e9bd82;animation:pulse 2s infinite}
+.music h2{font-weight:normal;color:#f2d4a2}
+.music p{color:#d8b9c6;font-style:italic;line-height:1.7}
+audio{width:100%;max-width:400px;margin-top:12px;accent-color:#c69b65}
+footer{text-align:center;padding:50px 20px 75px;color:#e9c99c;line-height:2}
+footer p{color:#d8b9c6;font-style:italic}
+.heart{
+  position:fixed;bottom:-35px;z-index:2;pointer-events:none;
+  color:#f2a2bb;opacity:0;
+  animation:floatUp linear forwards;
+  text-shadow:0 0 12px #f4a9c977;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0deg);opacity:0}
+  12%{opacity:.7}
+  85%{opacity:.5}
+  100%{transform:translateY(-110vh) rotate(35deg);opacity:0}
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media(max-width:550px){
+  header{padding:45px 15px 25px}
+  .photo{height:270px}
+  .memory{padding:12px;margin:25px auto 38px}
+  .music{margin:10px 12px 50px}
+}
+</style>
+</head>
+<body>
+
+<div id="lock">
+  <div class="lockbox">
+    <div class="lockheart">♡</div>
+    <div class="tag">A LITTLE PLACE FOR US</div>
+    <h2>Our Secret Memories</h2>
+    <p>Some memories never fade...</p>
+    <input id="pin" type="password" placeholder="Enter Secret PIN" maxlength="4">
+    <br>
+    <button onclick="unlock()">Unlock Memories ♡</button>
+    <p id="err"></p>
+  </div>
+</div>
+
+<header>
+  <div class="tag">A STORY WRITTEN IN MY HEART</div>
+  <h1>Our Memories ♡</h1>
+  <div class="line"></div>
+  <p>
+    Some people leave footprints on our hearts,<br>
+    and those footprints never disappear.
+  </p>
+</header>
+
+<main id="memories"></main>
+
+<section class="music">
+  <div class="music-icon">♫</div>
+  <h2>A Song For You ♡</h2>
+  <p>Every melody reminds me of you.</p>
+  <audio id="player" controls loop preload="metadata">
+    <source src="love.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+</section>
+
+<footer>
+  <div style="font-size:42px">♡</div>
+  <h2 style="color:#f2d4a2;font-weight:normal">Even From Afar...</h2>
+  <p>
+    You are still a beautiful part of my story.<br>
+    Some feelings stay, even when people are apart.
+  </p>
+  <div class="line"></div>
+  <small style="color:#b9959e;letter-spacing:3px">
+    FOREVER IN MY MEMORIES
+  </small>
+</footer>
+
+<script>
+const SECRET_PIN = "0115";
+
+const photos = [
+  "photo1.jpeg",
+  "photo2.jpeg",
+  "photo3.jpeg",
+  "photo4.jpeg",
+  "photo5.jpeg",
+  "photo6.jpeg",
+  "photo7.jpeg"
+];
+
+const quotes = [
+  "I still find pieces of you in the little things I do. I miss you more than words can ever say.",
+  "If I could turn back time, I would pause every beautiful moment I spent with you.",
+  "Distance may keep us apart, but it can never erase the memories we made together.",
+  "Some nights, I look at the stars and wonder if you ever think of me too.",
+  "I never knew a memory could make me smile and break my heart at the same time.",
+  "No matter how many days pass, a part of my heart will always remember you.",
+  "If missing you had a sound, the whole world would hear how much I miss you."
+];
+
+const container = document.getElementById("memories");
+
+photos.forEach((photo,i)=>{
+  const card=document.createElement("section");
+  card.className="memory";
+  card.innerHTML=`
+    <div class="photo">
+      <img src="${photo}" alt="Memory photo ${i+1}">
+    </div>
+    <div class="details">
+      <h2>Memory ${String(i+1).padStart(2,"0")} ♡</h2>
+      <textarea class="quote" aria-label="Love quote">${quotes[i]}</textarea>
+    </div>
+  `;
+
+  const img=card.querySelector("img");
+  img.onerror=()=>{
+    img.style.display="none";
+    const message=document.createElement("p");
+    message.textContent="Image not found: "+photo;
+    message.style.cssText="color:#f3a4b0;text-align:center;padding:20px";
+    card.querySelector(".photo").appendChild(message);
+  };
+  container.appendChild(card);
+});
+
+function unlock(){
+  const entered=document.getElementById("pin").value;
+  if(entered===SECRET_PIN){
+    document.getElementById("lock").style.display="none";
+    startHearts();
+  }else{
+    document.getElementById("err").textContent="Incorrect PIN. Please try again.";
+  }
+}
+document.getElementById("pin").addEventListener("keydown",e=>{
+  if(e.key==="Enter")unlock();
+});
+
+let heartTimer=null;
+function startHearts(){
+  if(heartTimer)return;
+  heartTimer=setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.textContent=["♡","♥","✦"][Math.floor(Math.random()*3)];
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(12+Math.random()*22)+"px";
+    const duration=5+Math.random()*5;
+    heart.style.animationDuration=duration+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),duration*1000);
+  },650);
+}
+</script>
+</body>
+</html>
